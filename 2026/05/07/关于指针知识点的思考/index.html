@@ -4,18 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Hello World | Hexo</title>
+  <title>从指针赋值到内存回收 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="1.定义指针： 声明一个 int * 类型的指针变量 p，用于存放整型数据的地址。int *p; &#x2F;&#x2F;指针变量名为p，内部可以存储一个地址，地址指向的区域用于存储int类型的数据 2.堆内存申请：使用 malloc 申请堆空间，并将返回的 void * 强制转换为 int *。 p &#x3D; (int *)malloc(sizeof(int)); &#x2F;&#x2F;(int *)强制转换为int指">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2026/05/05/hello-world/index.html">
+<meta property="og:title" content="从指针赋值到内存回收">
+<meta property="og:url" content="http://example.com/2026/05/07/%E5%85%B3%E4%BA%8E%E6%8C%87%E9%92%88%E7%9F%A5%E8%AF%86%E7%82%B9%E7%9A%84%E6%80%9D%E8%80%83/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="1.定义指针： 声明一个 int * 类型的指针变量 p，用于存放整型数据的地址。int *p; &#x2F;&#x2F;指针变量名为p，内部可以存储一个地址，地址指向的区域用于存储int类型的数据 2.堆内存申请：使用 malloc 申请堆空间，并将返回的 void * 强制转换为 int *。 p &#x3D; (int *)malloc(sizeof(int)); &#x2F;&#x2F;(int *)强制转换为int指">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-05-05T08:12:07.265Z">
-<meta property="article:modified_time" content="2026-05-05T08:12:07.265Z">
+<meta property="article:published_time" content="2026-05-07T12:44:01.000Z">
+<meta property="article:modified_time" content="2026-05-07T13:30:09.253Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C语言学习心得">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -73,12 +74,16 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-关于指针知识点的思考" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2026/05/05/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2026-05-05T08:12:07.265Z" itemprop="datePublished">2026-05-05</time>
+    <a href="/2026/05/07/%E5%85%B3%E4%BA%8E%E6%8C%87%E9%92%88%E7%9F%A5%E8%AF%86%E7%82%B9%E7%9A%84%E6%80%9D%E8%80%83/" class="article-date">
+  <time class="dt-published" datetime="2026-05-07T12:44:01.000Z" itemprop="datePublished">2026-05-07</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -87,7 +92,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      Hello World
+      从指针赋值到内存回收
     </h1>
   
 
@@ -95,42 +100,50 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <p>1.定义指针： 声明一个 int * 类型的指针变量 p，用于存放整型数据的地址。<br>int *p; &#x2F;&#x2F;指针变量名为p，内部可以存储一个地址，地址指向的区域用于存储int类型的数据</p>
+<p>2.堆内存申请：使用 malloc 申请堆空间，并将返回的 void * 强制转换为 int *。</p>
+<pre><code class="language-c">p = (int *)malloc(sizeof(int)); //(int *)强制转换为int指针类型（int *）
+if (p == NULL) {
+    perror(&quot;malloc failed&quot;);
+    exit(-1); // 或者进行其他错误处理
+}
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+3.存入数据： 通过解引用运算符 (*) 访问 p 指向的内存空间。
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+*p = 100;  //*为解引用运算符，*p可以读取地址p下存储的数据，存入新数据
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+4. 释放内存：调用 free(p) 释放堆空间。
+free(p); //释放指针p指向的堆内存空间，此时 p 变成了“野指针”，依然指向原地址，但该地址已失效。
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+5.指针指向NULL:将 p 赋值为 NULL
+p=NULL；//将指针指向空，确保无法通过p内部存储的地址访问这个地址下的内容
+
+注意事项
+1.p 是一个指针变量，内部存储的是地址值。对 p 赋值必须是一个合法地址。*p 代表通过地址访问到的目标内存单元；
+
+2.释放指针p指的是释放地址p下存储的内容，后续还需要将p内存储的地址赋值为空。
+</code></pre>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/05/05/hello-world/" data-id="cuidT-tUW2RiE86y2bbVK7aiZ" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2026/05/07/%E5%85%B3%E4%BA%8E%E6%8C%87%E9%92%88%E7%9F%A5%E8%AF%86%E7%82%B9%E7%9A%84%E6%80%9D%E8%80%83/" data-id="cuid1YHYoVhvupZedo2D-k51t" data-title="从指针赋值到内存回收" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" rel="tag">C语言学习心得</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2026/05/05/%E5%8D%95%E9%93%BE%E8%A1%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          单链表
-        
-      </div>
-    </a>
   
+    <a href="/2026/05/05/%E5%8D%95%E9%93%BE%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">单链表</div>
+    </a>
   
 </nav>
 

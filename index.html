@@ -71,6 +71,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-关于指针知识点的思考" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/05/07/%E5%85%B3%E4%BA%8E%E6%8C%87%E9%92%88%E7%9F%A5%E8%AF%86%E7%82%B9%E7%9A%84%E6%80%9D%E8%80%83/" class="article-date">
+  <time class="dt-published" datetime="2026-05-07T12:44:01.000Z" itemprop="datePublished">2026-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/05/07/%E5%85%B3%E4%BA%8E%E6%8C%87%E9%92%88%E7%9F%A5%E8%AF%86%E7%82%B9%E7%9A%84%E6%80%9D%E8%80%83/">从指针赋值到内存回收</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>1.定义指针： 声明一个 int * 类型的指针变量 p，用于存放整型数据的地址。<br>int *p; &#x2F;&#x2F;指针变量名为p，内部可以存储一个地址，地址指向的区域用于存储int类型的数据</p>
+<p>2.堆内存申请：使用 malloc 申请堆空间，并将返回的 void * 强制转换为 int *。</p>
+<pre><code class="language-c">p = (int *)malloc(sizeof(int)); //(int *)强制转换为int指针类型（int *）
+if (p == NULL) {
+    perror(&quot;malloc failed&quot;);
+    exit(-1); // 或者进行其他错误处理
+}
+
+3.存入数据： 通过解引用运算符 (*) 访问 p 指向的内存空间。
+
+*p = 100;  //*为解引用运算符，*p可以读取地址p下存储的数据，存入新数据
+
+4. 释放内存：调用 free(p) 释放堆空间。
+free(p); //释放指针p指向的堆内存空间，此时 p 变成了“野指针”，依然指向原地址，但该地址已失效。
+
+5.指针指向NULL:将 p 赋值为 NULL
+p=NULL；//将指针指向空，确保无法通过p内部存储的地址访问这个地址下的内容
+
+注意事项
+1.p 是一个指针变量，内部存储的是地址值。对 p 赋值必须是一个合法地址。*p 代表通过地址访问到的目标内存单元；
+
+2.释放指针p指的是释放地址p下存储的内容，后续还需要将p内存储的地址赋值为空。
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/05/07/%E5%85%B3%E4%BA%8E%E6%8C%87%E9%92%88%E7%9F%A5%E8%AF%86%E7%82%B9%E7%9A%84%E6%80%9D%E8%80%83/" data-id="cuid1YHYoVhvupZedo2D-k51t" data-title="从指针赋值到内存回收" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" rel="tag">C语言学习心得</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-单链表" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2026/05/05/%E5%8D%95%E9%93%BE%E8%A1%A8/" class="article-date">
@@ -237,7 +304,7 @@ return 1;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/05/05/%E5%8D%95%E9%93%BE%E8%A1%A8/" data-id="cuidsEmiiycj6ehwj1ILuqRm8" data-title="单链表" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2026/05/05/%E5%8D%95%E9%93%BE%E8%A1%A8/" data-id="cuidY4zwSqQ4khEVaIw13-oeh" data-title="单链表" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -288,7 +355,7 @@ return 1;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/05/05/hello-world/" data-id="cuidGInVCsWwjhbk2B99itTTh" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2026/05/05/hello-world/" data-id="cuidT-tUW2RiE86y2bbVK7aiZ" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -307,12 +374,33 @@ return 1;
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" rel="tag">C语言学习心得</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" style="font-size: 10px;">C语言学习心得</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -329,6 +417,10 @@ return 1;
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2026/05/07/%E5%85%B3%E4%BA%8E%E6%8C%87%E9%92%88%E7%9F%A5%E8%AF%86%E7%82%B9%E7%9A%84%E6%80%9D%E8%80%83/">从指针赋值到内存回收</a>
+          </li>
         
           <li>
             <a href="/2026/05/05/%E5%8D%95%E9%93%BE%E8%A1%A8/">单链表</a>
